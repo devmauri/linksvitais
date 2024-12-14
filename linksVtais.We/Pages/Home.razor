@@ -1,0 +1,33 @@
+﻿@page "/"
+@inject IJSRuntime JsRuntime
+
+
+<svg id="mapa" width="200" height="250" version="1.1" xmlns="http://www.w3.org/2000/svg">
+    <style>
+    circle,rect,line {
+      fill: rgba(255, 0, 0, 0);
+      stroke: rgb(51, 224, 8);
+      stroke-width: 1px;
+      cursor: pointer;
+    }
+  </style>
+</svg>
+<button @onclick="RectangleDraw" > retangle</button>
+<button @onclick="LineDraw"> line</button>
+<button @onclick="CircleDraw"> circle</button>
+@code{
+        public async Task RectangleDraw(){
+            await JsRuntime.InvokeVoidAsync("rectangleDraw","idRetangulo","10","50","10","10");
+        }
+
+        public async Task  LineDraw(){
+            await JsRuntime.InvokeVoidAsync("lineDraw", "idLinha", "0","0","110","150","black","1");
+          
+        }
+
+        public async Task  CircleDraw(){
+            await JsRuntime.InvokeVoidAsync("circleDraw", "idCirculo", "10","10","10");
+          
+        }
+
+}
